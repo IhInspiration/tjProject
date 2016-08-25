@@ -8,7 +8,12 @@ module.exports = think.controller(Base, {
    * @return {Promise} []
    */
   indexAction: function(self){
-    //auto render template file index_index.html
+    //auto render template file index.html
+    var data = {
+      name: 'JackWang',
+      content: "Hello,World!"
+    };
+    self.assign("data", data);
     return self.display();
   }
 });
