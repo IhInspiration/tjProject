@@ -3,13 +3,11 @@
 var Base = require('./base.js');
 
 module.exports = think.controller(Base, {
-  /**
-   * index action
-   * @return {Promise} []
-   */
+  //文章编辑页面
   indexAction: function(self){
     return self.display();
   },
+  //添加文章
   addAction: function(self){
     var http = this.http,
         getData = http._post,
@@ -20,12 +18,11 @@ module.exports = think.controller(Base, {
       time: new Date().toLocaleString(),
       content: getData.content
     }).then(function(data){
-      console.log(data);
       url = '/index/article?id=' + data;
-      console.log(url);
       http.redirect(url);
     });
   },
+  //显示文章
   articleAction: function(self){
     var id = this.http.get("id");
     this.model("article").where({_id: id}).find().then(function(data){
